@@ -22,7 +22,7 @@ class Controller {
     }
 
     _commit(todos) {
-        this.onTodoListChanged(todos)
+        this.onTodoListChanged(this.model.todos)
         localStorage.setItem('todos', JSON.stringify(todos))
     }
 
@@ -35,19 +35,22 @@ class Controller {
                 this._commit(this.model.todos)
                 this.onTodoListChanged(this.model.todos)
                 this.view._resetInput()
-                //console.log(this.model.todos)
             }
         })
     }
 
     handleEditTodo() {
         this.todoList.addEventListener('focusout', event => {
-            let text = event.target.innerText
-            const id = parseInt(event.target.parentElement.id)
-            this.model.editTodo(id, text)
-            this.onTodoListChanged(this.model.todos)
-            this._commit(this.model.todos)
-            //console.log(this.model.todos)
+
+            if(event.target.innerText == ''){
+                return
+            } else{
+                let text = event.target.innerText
+                const id = parseInt(event.target.parentElement.id)
+                this.model.editTodo(id, text)
+                this._commit(this.model.todos)
+                this.onTodoListChanged(this.model.todos)
+            }
         })
     }
 
@@ -58,7 +61,6 @@ class Controller {
                 this.model.deleteTodo(id)
                 this._commit(this.model.todos)
                 this.onTodoListChanged(this.model.todos)
-                //console.log(this.model.todos)
             }
         })
     }
@@ -68,10 +70,12 @@ class Controller {
             if (event.target.type === 'checkbox') {
                 const id = parseInt(event.target.parentElement.id)
                 this.model.toggleTodo(id)
-                this._commit(this.model.todos)
                 this.onTodoListChanged(this.model.todos)
-                //console.log(this.model.todos)
+                this._commit(this.model.todos)
+                this.todoList.classList.toggle('check')
             }
+                
+            
         })
     }
 }
