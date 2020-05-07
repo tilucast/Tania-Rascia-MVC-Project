@@ -12,11 +12,14 @@ I believe she is a front-end developer, since her <a  href="https://github.com/t
 
 I don't know much about MVC as well, but i got a little experience from another project **( you can find it on my repositories, it's called alura-frame. )** , and one thing that i kept on my mind after doing that project is that the controller is the one who does things, the view and the model shouldn't do anything unrelated to generating the view and controlling the data, respectively.
 
-So i did that. In her project, the view is listening to events, on mine, the controller is the one who holds all those functions.
+So i did that. In her project, the view is listening to events, on mine, the controller is the one who handle all those functions.
 
-Again, i don't know much about MVC, but i did that anyway, and the project is running the same way as the original is.
+Again, i don't know much about MVC, but i did it anyway, and the project is running the same way as the original is.
 
 Oh, and i'm using import/export .
+
+I pretty much changed the way the view works. I'm no longer using the old way of creating html elements. Im using string literals to build html now.
+And i changed a bit the logic of the controller.
 
 # Running the project
 
